@@ -78,23 +78,26 @@ const WhoShouldAttend = () => {
 
         <div className="bg-white rounded-lg shadow-xl overflow-hidden">
           <div className="overflow-x-auto p-5">
-            <table className="min-w-full divide-y divide-gray-200">
+            <table className="min-w-full divide-y shadow divide-gray-200">
               <thead>
                 <tr className="relative bg-gradient-to-br from-[#3498db] to-[#2980b9] shadow rounded-t-lg">
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-white first:rounded-tl-lg last:rounded-tr-lg">
+                  <th className="px-6 py-3 text-left text-sm font-semibold whitespace-nowrap text-white first:rounded-tl-lg last:rounded-tr-lg">
                     City
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-white">
+                  <th className="px-6 py-3 text-left text-sm whitespace-nowrap font-semibold text-white">
                     Preview Talk, Entrance Test & Interview
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-white first:rounded-tl-lg last:rounded-tr-lg">
+                  <th className="px-6 py-3 text-left text-sm whitespace-nowrap font-semibold text-white first:rounded-tl-lg last:rounded-tr-lg">
                     Venue
                   </th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {scheduleData.map((item, index) => (
-                  <tr key={index} className="hover:bg-gray-50 border-b border-gray-200">
+                  <tr
+                    key={index}
+                    className="hover:bg-gray-50 border-b border-gray-200"
+                  >
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-r border-gray-200">
                       {item.city}
                     </td>
@@ -102,7 +105,7 @@ const WhoShouldAttend = () => {
                       <div>{item.date}</div>
                       <div>{item.time}</div>
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">
+                    <td className="px-6 py-4 text-sm whitespace-nowrap text-gray-900">
                       <div className="font-medium">{item.venue}</div>
                       <div className="text-gray-600">{item.address}</div>
                     </td>
