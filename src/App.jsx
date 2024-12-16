@@ -5,9 +5,7 @@ import LandingPage from "./app/landingPage/LandingPage";
 const App = () => {
   return (
     <>
-      <div
-        className="min-h-screen mx-auto max-w-screen-xl bg-white"
-      >
+      <div className="min-h-screen bg-white">
         <Navbar />
         <LandingPage />
       </div>
