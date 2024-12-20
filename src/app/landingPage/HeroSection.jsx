@@ -3,11 +3,11 @@ import React from "react";
 const HeroSection = () => {
   return (
     <main
-      className="container mx-auto max-w-screen-xl px-4 py-8 flex flex-col text-center sm:text-left md:flex-row gap-8 items-center justify-between hero-bg"
+      className="container mx-auto max-w-screen-xl px-4 py-4 sm:py-8 flex flex-col text-center sm:text-left md:flex-row gap-8 items-center justify-between hero-bg"
     >
       {/* Left Content */}
       <div className="space-y-6">
-        <div className="space-y-4">
+        <div className="space-y-2 sm:space-y-4">
           <h1 className="text-3xl sm:text-4xl font-bold text-[#1a237e]">
             Study at
             <div>National University of Singapore (NUS)</div>
@@ -15,7 +15,7 @@ const HeroSection = () => {
           <div className="bg-[#2c2760] animate-pulse text-white text-2xl sm:text-3xl font-bold py-2 px-4 inline-block rounded-sm">
             Transform Your Future
           </div>
-          <h2 className="text-xl sm:text-2xl text-[#1a237e]">
+          <h2 className="text-xl leading-none sm:text-2xl text-[#1a237e]">
             with NUS 1-Year MTech Programs!
           </h2>
         </div>
@@ -26,9 +26,9 @@ const HeroSection = () => {
           Engineering, and Business Analytics.
         </p>
 
-        <button className="bg-[#1a237e] hover:bg-[#1a237e]/90 rounded-sm text-white px-8 py-2 text-lg">
+        {/* <button className="bg-[#1a237e] hover:bg-[#1a237e]/90 rounded-sm text-white px-8 py-2 text-lg">
           Apply Now
-        </button>
+        </button> */}
       </div>
 
       {/* Right Form */}
