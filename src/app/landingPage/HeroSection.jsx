@@ -12,7 +12,7 @@ const HeroSection = () => {
             Study at
             <div>National University of Singapore (NUS)</div>
           </h1>
-          <div className="bg-[#2c2760] animate-pulse text-white text-2xl sm:text-3xl font-bold py-2 px-4 inline-block">
+          <div className="bg-[#2c2760] animate-pulse text-white text-2xl sm:text-3xl font-bold py-2 px-4 inline-block rounded-sm">
             Transform Your Future
           </div>
           <h2 className="text-xl sm:text-2xl text-[#1a237e]">
@@ -26,13 +26,13 @@ const HeroSection = () => {
           Engineering, and Business Analytics.
         </p>
 
-        <button className="bg-[#1a237e] hover:bg-[#1a237e]/90 text-white px-8 py-2 text-lg">
+        <button className="bg-[#1a237e] hover:bg-[#1a237e]/90 rounded-sm text-white px-8 py-2 text-lg">
           Apply Now
         </button>
       </div>
 
       {/* Right Form */}
-      <div className="relative bg-gradient-to-br from-[#3498db] to-[#2980b9] p-6 !pt-14 shadow-xl max-w-[400px] custom-div">
+      <div id="apply-now" className="relative bg-gradient-to-br from-sky-500 to-blue-600 p-6 !pt-14 shadow-xl max-w-[400px] custom-div rounded-sm">
         <div className="relative">
           <h3 className="text-3xl text-center font-bold text-white mb-6">
             Start Your Journey at NUS Today!
@@ -73,7 +73,7 @@ const HeroSection = () => {
             />
             <button
               type="submit"
-              className="w-1/2 block mx-auto bg-[#1a237e] hover:bg-[#1a237e]/90 text-white py-2 text-lg animate-bounce"
+              className="px-14 rounded-sm py-2 block mx-auto bg-[#1a237e] hover:bg-[#1a237e]/90 text-white  text-[1.4rem] font-normal animate-bounce"
               style={{ marginTop: '2.5rem' }}
             >
               Submit

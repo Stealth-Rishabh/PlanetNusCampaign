@@ -61,7 +61,7 @@ const scheduleData = [
 
 const WhoShouldAttend = () => {
   return (
-    <div className="min-h-screen relative bg-gradient-to-br from-[#3498db] to-[#2980b9] py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen relative bg-gradient-to-br from-sky-500 to-blue-600 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
@@ -71,7 +71,7 @@ const WhoShouldAttend = () => {
             The NUS MTech entrance test is your first step toward securing a
             spot in one of our highly regarded MTech programs.
           </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mt-8 mb-12">
+          <h2 className="text-3xl sm:text-4xl animate-bounce font-bold text-white mt-8 mb-12">
             16<sup>th</sup> March – 30<sup>th</sup> March 2025
           </h2>
         </div>
@@ -80,7 +80,7 @@ const WhoShouldAttend = () => {
           <div className="overflow-x-auto p-5">
             <table className="min-w-full divide-y shadow divide-gray-200">
               <thead>
-                <tr className="relative bg-gradient-to-br from-[#3498db] to-[#2980b9] shadow rounded-t-lg">
+                <tr className="relative bg-gradient-to-br from-sky-500 to-blue-600 shadow rounded-t-lg">
                   <th className="px-6 py-3 text-left text-sm font-semibold whitespace-nowrap text-white first:rounded-tl-lg last:rounded-tr-lg">
                     City
                   </th>

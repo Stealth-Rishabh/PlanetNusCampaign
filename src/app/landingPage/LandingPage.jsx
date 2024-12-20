@@ -3,6 +3,8 @@ import HeroSection from "./HeroSection";
 import WhoShouldAttend from "./WhoShouldAttend";
 import MTechProgram from "./MTechProgram";
 import ProgramSpecializations from "./ProgramSpecializations";
+import WhoShouldApply from "./WhoShouldApply";
+import WhyChooseNus from "./WhyChooseNus";
 
 const LandingPage = () => {
   return (
@@ -11,6 +13,8 @@ const LandingPage = () => {
       <WhoShouldAttend />
       <MTechProgram />
       <ProgramSpecializations />
+      <WhoShouldApply />
+      <WhyChooseNus />
     </>
   );
 };

@@ -17,7 +17,7 @@ export default function MTechProgram() {
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a367b] tracking-tight animate-fade-in">
               MTech Program at NUS
             </h1>
-            <div className="bg-gradient-to-r from-[#3182ce] to-[#2c5282] text-white p-4 shadow-lg transform hover:scale-[1.02] transition-all duration-300">
+            <div className="bg-gradient-to-br from-sky-500 to-blue-600 text-white p-4 shadow-lg transform hover:scale-[1.02] rounded-sm animate-pulse transition-all duration-300">
               <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold">
                 A Pathway to Future Success
               </h2>

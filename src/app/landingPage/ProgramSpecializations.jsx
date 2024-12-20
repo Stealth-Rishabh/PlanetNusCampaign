@@ -47,7 +47,7 @@ export default function ProgramSpecializations() {
                 className="w-full h-full object-cover hover:scale-125 transition-all duration-300"
               />
             </div>
-            <div className="bg-gradient-to-br from-[#3498db] to-[#2980b9] inset-0 flex items-center p-5">
+            <div className="bg-gradient-to-br from-sky-500 to-blue-600 inset-0 flex items-center p-5">
               <h3 className="text-white text-2xl sm:text-[32px] leading-[36px] text-center font-medium">
                 {spec.title}
               </h3>
