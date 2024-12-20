@@ -12,7 +12,7 @@ const HeroSection = () => {
             Study at
             <div>National University of Singapore (NUS)</div>
           </h1>
-          <div className="bg-[#2c2760] text-white text-2xl sm:text-3xl font-bold py-2 px-4 inline-block">
+          <div className="bg-[#2c2760] animate-pulse text-white text-2xl sm:text-3xl font-bold py-2 px-4 inline-block">
             Transform Your Future
           </div>
           <h2 className="text-xl sm:text-2xl text-[#1a237e]">
@@ -68,12 +68,13 @@ const HeroSection = () => {
             />
             <input
               placeholder="City for Entrance Test"
-              className="w-full bg-white p-2 "
+              className="w-full bg-white p-2"
               required
             />
             <button
               type="submit"
-              className="w-1/2 block mx-auto bg-[#1a237e] hover:bg-[#1a237e]/90 text-white py-2 text-lg"
+              className="w-1/2 block mx-auto bg-[#1a237e] hover:bg-[#1a237e]/90 text-white py-2 text-lg animate-bounce"
+              style={{ marginTop: '2.5rem' }}
             >
               Submit
             </button>
