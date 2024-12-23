@@ -25,10 +25,12 @@ const HeroSection = () => {
             Artificial Intelligence
           </span>
           ,{" "}
-          <span className=" text-[#2c2760] text-lg font-bold">Software Engineering</span>,
-          and{" "}
           <span className=" text-[#2c2760] text-lg font-bold">
             Business Analytics
+          </span>
+          ,and{" "}
+          <span className=" text-[#2c2760] text-lg font-bold">
+            Software Engineering
           </span>
           .
         </p>
