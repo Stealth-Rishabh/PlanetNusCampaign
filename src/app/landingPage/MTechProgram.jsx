@@ -1,5 +1,5 @@
 import React from "react";
-import MTechProgramLogo from "../../assets/MTechProgram.png";
+import MTechPrograms from "../../assets/MTechProgram.webp";
 import { Clock, Briefcase } from "lucide-react";
 
 export default function MTechProgram() {
@@ -8,7 +8,7 @@ export default function MTechProgram() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* Left side - Image collage */}
         <div className="">
-          <img src={MTechProgramLogo} className="w-full max-h-[500px] object-contain" alt="" />
+          <img src={MTechPrograms} className="w-full max-h-[500px] object-contain" alt="" />
         </div>
 
         {/* Right side - Content */}

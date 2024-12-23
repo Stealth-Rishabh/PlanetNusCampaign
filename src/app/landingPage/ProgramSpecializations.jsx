@@ -1,7 +1,7 @@
 import React from "react";
-import PS1 from "../../assets/PS1.png";
-import PS2 from "../../assets/PS2.png";
-import PS3 from "../../assets/PS3.png";
+import PS1 from "../../assets/PS1.webp";
+import PS2 from "../../assets/PS2.webp";
+import PS3 from "../../assets/PS3.webp";
 
 export default function ProgramSpecializations() {
   const specializations = [

@@ -1,6 +1,5 @@
 import React from "react";
-import Image from "../../assets/Rectangle (4).png";
-import bg from "../../assets/Rectangle (5).png";
+import Image from "../../assets/WSA.webp";
 
 export default function WhoShouldApply() {
   return (

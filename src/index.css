@@ -37,14 +37,14 @@ html {
 }
 
 .hero-bg {
-  background-image: url("./assets/hero-img.jpg");
+  background-image: url("./assets/HeroImage.webp");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .bg {
-  background-image: url("./assets/Rectangle (5).png");
+  background-image: url("./assets/WSA-BG.webp");
   background-size: cover;
   background-position-x: center;
   background-position-y: 100%;

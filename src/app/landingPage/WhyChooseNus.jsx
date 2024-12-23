@@ -1,11 +1,4 @@
 import React from "react";
-import {
-  ArrowUpRight,
-  GraduationCap,
-  Building2,
-  DollarSign,
-  Globe2,
-} from "lucide-react";
 import Image from "../../assets/png-1.png";
 
 const WhyChooseNus = () => {
