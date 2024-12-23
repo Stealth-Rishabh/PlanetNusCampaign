@@ -28,7 +28,7 @@ const HeroSection = () => {
           <span className=" text-[#2c2760] text-lg font-bold">
             Business Analytics
           </span>
-          ,and{" "}
+          , and{" "}
           <span className=" text-[#2c2760] text-lg font-bold">
             Software Engineering
           </span>
