@@ -7,15 +7,19 @@ const HeroSection = () => {
 
   // Function to check if number was already submitted
   const isNumberAlreadySubmitted = (phoneNumber) => {
-    const submittedNumbers = JSON.parse(localStorage.getItem('submittedNumbers') || '[]');
+    const submittedNumbers = JSON.parse(
+      localStorage.getItem("submittedNumbers") || "[]"
+    );
     return submittedNumbers.includes(phoneNumber);
   };
 
   // Function to save submitted number
   const saveSubmittedNumber = (phoneNumber) => {
-    const submittedNumbers = JSON.parse(localStorage.getItem('submittedNumbers') || '[]');
+    const submittedNumbers = JSON.parse(
+      localStorage.getItem("submittedNumbers") || "[]"
+    );
     submittedNumbers.push(phoneNumber);
-    localStorage.setItem('submittedNumbers', JSON.stringify(submittedNumbers));
+    localStorage.setItem("submittedNumbers", JSON.stringify(submittedNumbers));
   };
 
   // Add validation functions
@@ -33,13 +37,15 @@ const HeroSection = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // Get the phone number from the form
     const phoneNumber = e.target["Contact No"].value;
 
     // Check if number was already submitted
     if (isNumberAlreadySubmitted(phoneNumber)) {
-      setMessage("❌ This phone number has already been used. Please use a different number.");
+      setMessage(
+        "❌ This phone number has already been used. Please use a different number."
+      );
       setMessageType("error");
       return;
     }
@@ -93,15 +99,16 @@ const HeroSection = () => {
         if (response.ok || response.status === 302) {
           // Clear all form fields
           e.target.reset();
-          
+
           // Reset select elements to their default state
           e.target.City.selectedIndex = 0;
+          e.target.Qualification.selectedIndex = 0;
           e.target["Program of Interest"].selectedIndex = 0;
-          
+
           // Clear any stored form data
           setMessage("✅ Form submitted successfully! We'll contact you soon.");
           setMessageType("success");
-          
+
           setTimeout(() => {
             setMessage("");
             setMessageType("");
@@ -113,7 +120,12 @@ const HeroSection = () => {
       .catch((error) => {
         console.error(error);
         setMessageType("error");
-        setMessage(`❌ ${error.message || "An error occurred while submitting the form. Please try again."}`);
+        setMessage(
+          `❌ ${
+            error.message ||
+            "An error occurred while submitting the form. Please try again."
+          }`
+        );
       })
       .finally(() => {
         setIsSubmitting(false);
@@ -170,13 +182,13 @@ const HeroSection = () => {
 
           {/* Message display above the form */}
           {message && (
-            <div 
+            <div
               className={`mb-4 p-3 rounded-md text-sm font-medium ${
-                messageType === 'success' 
-                  ? 'bg-green-100 text-green-700 border border-green-400' 
-                  : messageType === 'error'
-                    ? 'bg-red-100 text-red-700 border border-red-400'
-                    : 'bg-blue-100 text-blue-700 border border-blue-400'
+                messageType === "success"
+                  ? "bg-green-100 text-green-700 border border-green-400"
+                  : messageType === "error"
+                  ? "bg-red-100 text-red-700 border border-red-400"
+                  : "bg-blue-100 text-blue-700 border border-blue-400"
               }`}
               role="alert"
             >
@@ -212,11 +224,7 @@ const HeroSection = () => {
               title="Please enter a valid email address"
               required
             />
-            <select
-              name="City"
-              className="w-full bg-white p-2"
-              required
-            >
+            <select name="City" className="w-full bg-white p-2" required>
               <option value="" disabled selected>
                 City for Entrance Test
               </option>
@@ -228,12 +236,18 @@ const HeroSection = () => {
               <option value="Mumbai">Mumbai</option>
               <option value="Pune">Pune</option>
             </select>
-            <input
-              placeholder="Qualification"
+            <select
               name="Qualification"
-              className="w-full bg-white p-2 "
+              className="w-full bg-white p-2"
               required
-            />
+            >
+              <option value="" disabled selected>
+                Qualification
+              </option>
+              <option value="12th Pass">12th Pass</option>
+              <option value="Graduate">Graduate</option>
+              <option value="Post Graduate">Post Graduate</option>
+            </select>
             <select
               name="Program of Interest"
               className="w-full bg-white p-2"
@@ -252,7 +266,9 @@ const HeroSection = () => {
               type="submit"
               disabled={isSubmitting}
               className={`px-14 rounded-sm py-2 block mx-auto bg-[#1a237e] hover:bg-[#1a237e]/90 text-white text-[1.4rem] font-normal ${
-                isSubmitting ? 'opacity-50 cursor-not-allowed' : 'animate-bounce'
+                isSubmitting
+                  ? "opacity-50 cursor-not-allowed"
+                  : "animate-bounce"
               }`}
               style={{ marginTop: "2.5rem" }}
             >
