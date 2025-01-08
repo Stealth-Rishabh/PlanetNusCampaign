@@ -107,7 +107,7 @@ const Hero = () => {
 
       // Send the data to the PHP server
       const response = await fetch(
-        "https://nus.stealthlearn.in/submit.php",
+        "https://nus.planeteducation.info/submit.php",
         {
           method: "POST",
           body: formDataToSend,
