@@ -99,8 +99,8 @@ const Hero = () => {
       formDataToSend.append("referrer_name", document.referrer || "direct");
       formDataToSend.append("keyword", "Scholarship Program");
       formDataToSend.append("source", "Landing Page");
-      formDataToSend.append("orderid", "1040"); // Hardcoded or dynamically generated
-      formDataToSend.append("sitename", "GujratPlaneted");
+      formDataToSend.append("orderid", "1046"); // Hardcoded or dynamically generated
+      formDataToSend.append("sitename", "NUSPlanetlp");
       formDataToSend.append("campaign_url", window.location.href);
       formDataToSend.append("campaign_name", "Study Abroad Campaign");
       formDataToSend.append("network", "Organic");
