@@ -89,7 +89,7 @@ const HeroSection = () => {
     // Optional fields with default values
     formData.append("source", "website");
     formData.append("orderid", "1046");
-    formData.append("sitename", "N");
+    formData.append("sitename", "NUSPlanetlp");
 
     fetch("https://nus.planeteducation.info/submit.php", {
       method: "POST",
