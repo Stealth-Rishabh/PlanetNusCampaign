@@ -1,143 +1,137 @@
 import React, { useState } from "react";
 
-const Hero = () => {
-  const [formData, setFormData] = useState({
-    Name: "",
-    "Contact No": "",
-    Email: "",
-    City: "",
-    Qualification: "",
-    "Program of Interest": ""
-  });
+const HeroSection = () => {
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState(""); // 'success' or 'error'
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const [phoneError, setPhoneError] = useState("");
-  const [digitError, setDigitError] = useState("");
-  const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false); // Manage submit button state
-
-  const validatePhoneStart = (value) => {
-    if (value && !/^[6-9]/.test(value)) {
-      setPhoneError("Phone number must start with 6, 7, 8, or 9");
-    } else {
-      setPhoneError("");
-    }
+  // Function to check if number was already submitted
+  const isNumberAlreadySubmitted = (phoneNumber) => {
+    const submittedNumbers = JSON.parse(
+      localStorage.getItem("submittedNumbers") || "[]"
+    );
+    return submittedNumbers.includes(phoneNumber);
   };
 
-  const validatePhoneLength = (value) => {
-    if (value.length !== 10) {
-      setDigitError("Phone number must be of 10 digits");
-    } else {
-      setDigitError("");
-    }
+  // Function to save submitted number
+  const saveSubmittedNumber = (phoneNumber) => {
+    const submittedNumbers = JSON.parse(
+      localStorage.getItem("submittedNumbers") || "[]"
+    );
+    submittedNumbers.push(phoneNumber);
+    localStorage.setItem("submittedNumbers", JSON.stringify(submittedNumbers));
   };
 
-  const handleInput = (e) => {
-    const { name, value } = e.target;
-
-    if (name === "Name") {
-      const regex = /^[a-zA-Z\s]*$/;
-      if (!regex.test(value)) {
-        setError("Name can only contain letters and spaces.");
-        return;
-      }
-    }
-
-    if (name === "Contact No") {
-      const sanitizedValue = value.replace(/\D/g, "");
-      validatePhoneStart(sanitizedValue);
-
-      setFormData((prevState) => ({
-        ...prevState,
-        [name]: sanitizedValue.slice(0, 10),
-      }));
-      return;
-    }
-
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-    setError("");
+  // Add validation functions
+  const validateName = (value) => {
+    return /^[A-Za-z\s]+$/.test(value);
   };
 
-  const handleBlur = (e) => {
-    if (e.target.name === "Contact No") {
-      validatePhoneLength(e.target.value);
-    }
+  const validatePhone = (value) => {
+    return /^[6-9]\d{9}$/.test(value);
   };
 
-  const handleSubmit = async (e) => {
+  const validateEmail = (value) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setError("");
-    setSuccessMessage("");
-    setIsSubmitting(true); // Disable the submit button
 
-    if (phoneError || digitError) {
-      setError("Please correct the errors before submitting.");
-      setIsSubmitting(false); // Re-enable the submit button
-      return;
-    }
+    // Get the phone number from the form
+    const phoneNumber = e.target["Contact No"].value;
 
-    if (!/^[a-zA-Z\s]+$/.test(formData.Name)) {
-      setError("Name can only contain letters and spaces.");
-      setIsSubmitting(false); // Re-enable the submit button
-      return;
-    }
-
-    try {
-      // Prepare the data to send
-      const formDataToSend = new FormData();
-      formDataToSend.append("contact-name", formData.Name);
-      formDataToSend.append("contact-email", formData.Email);
-      formDataToSend.append("contact-phone", formData["Contact No"]);
-      formDataToSend.append("contact-city", formData.City);
-      formDataToSend.append("contact-qualification", formData.Qualification);
-      formDataToSend.append("contact-program", formData["Program of Interest"]);
-
-      // Add hidden fields dynamically
-      formDataToSend.append("referrer_name", document.referrer || "direct");
-      formDataToSend.append("keyword", "Scholarship Program");
-      formDataToSend.append("source", "Landing Page");
-      formDataToSend.append("orderid", "1046"); // Hardcoded or dynamically generated
-      formDataToSend.append("sitename", "NUSPlanetlp");
-      formDataToSend.append("campaign_url", window.location.href);
-      formDataToSend.append("campaign_name", "Study Abroad Campaign");
-      formDataToSend.append("network", "Organic");
-
-      // Send the data to the PHP server
-      const response = await fetch(
-        "https://nus.planeteducation.info/submit.php",
-        {
-          method: "POST",
-          body: formDataToSend,
-        }
+    if (isNumberAlreadySubmitted(phoneNumber)) {
+      setMessage(
+        "❌ This phone number has already been used. Please use a different number."
       );
-
-      // Check if the response is valid JSON
-      let result;
-      try {
-        result = await response.json();
-      } catch (jsonError) {
-        throw new Error("Unexpected response format, not JSON.");
-      }
-
-      // Handle the JSON response
-      if (response.ok && result.status === "success") {
-        setSuccessMessage("Form submitted successfully!");
-        // Redirect to the thank you page
-        window.location.href = "thankyou.html";
-      } else {
-        setError(result.message || "Failed to submit form. Please try again.");
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      setError(error.message || "Failed to submit form. Please try again.");
-    } finally {
-      setIsSubmitting(false); // Re-enable the submit button
+      setMessageType("error");
+      return;
     }
+
+    // Validate all fields before submission
+    const name = e.target.Name.value;
+    const phone = e.target["Contact No"].value;
+    const email = e.target.Email.value;
+
+    if (!validateName(name)) {
+      setMessage("Please enter a valid name (letters only)");
+      return;
+    }
+
+    if (!validatePhone(phone)) {
+      setMessage("Please enter a valid 10-digit mobile number");
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      setMessage("Please enter a valid email address");
+      return;
+    }
+
+    setMessage("Submitting...");
+    setMessageType("info");
+    setIsSubmitting(true);
+
+    // Create FormData object with the expected field names
+    const formData = new FormData();
+    formData.append("contact-name", e.target.Name.value);
+    formData.append("contact-email", e.target.Email.value);
+    formData.append("contact-phone", e.target["Contact No"].value);
+    formData.append(
+      "contact-message",
+      `City: ${e.target.City.value}, 
+      Qualification: ${e.target.Qualification.value}, 
+      Program: ${e.target["Program of Interest"].value}`
+    );
+    formData.append("contact-city", e.target.City.value);
+
+    // Optional fields with default values
+    formData.append("source", "website");
+    formData.append("orderid", "1046");
+    formData.append("sitename", "N");
+
+    fetch("your-backend-url/submit.php", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          // Save the submitted number
+          saveSubmittedNumber(phoneNumber);
+
+          // Clear form and show success message
+          e.target.reset();
+          e.target.City.selectedIndex = 0;
+          e.target.Qualification.selectedIndex = 0;
+          e.target["Program of Interest"].selectedIndex = 0;
+
+          setMessage("✅ " + data.message);
+          setMessageType("success");
+
+          setTimeout(() => {
+            setMessage("");
+            setMessageType("");
+          }, 5000);
+        } else {
+          throw new Error(data.message || "Submission failed");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        setMessageType("error");
+        setMessage(
+          `❌ ${
+            error.message ||
+            "An error occurred while submitting the form. Please try again."
+          }`
+        );
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
-  
   return (
     <main className="container mx-auto max-w-screen-xl px-4 py-4 sm:py-8 flex flex-col text-center sm:text-left md:flex-row gap-8 items-center justify-between hero-bg">
       {/* Left Content */}
@@ -188,7 +182,7 @@ const Hero = () => {
           </h3>
 
           {/* Message display above the form */}
-          {/* {message && (
+          {message && (
             <div
               className={`mb-4 p-3 rounded-md text-sm font-medium ${
                 messageType === "success"
@@ -201,7 +195,7 @@ const Hero = () => {
             >
               {message}
             </div>
-          )} */}
+          )}
 
           <form className="space-y-4" onSubmit={handleSubmit}>
             <input
@@ -288,4 +282,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default HeroSection;
