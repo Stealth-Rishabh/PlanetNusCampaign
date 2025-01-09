@@ -6,7 +6,7 @@ ini_set('log_errors', 1);
 ini_set('error_log', __DIR__ . '/php-errors.log');
 
 // CORS headers
-header("Access-Control-Allow-Origin: *"); // Allow all origins for development
+header("Access-Control-Allow-Origin: https://nus.planeteducation.info"); // Allow all origins for development
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Accept");
 header('Content-Type: application/json');
