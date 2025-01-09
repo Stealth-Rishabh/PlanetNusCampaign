@@ -91,7 +91,7 @@ const HeroSection = () => {
     formData.append("orderid", "1046");
     formData.append("sitename", "N");
 
-    fetch("your-backend-url/submit.php", {
+    fetch("https://nus.planeteducation.info/submit.php", {
       method: "POST",
       body: formData,
     })
