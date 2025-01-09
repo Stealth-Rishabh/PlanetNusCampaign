@@ -4,6 +4,7 @@ const HeroSection = () => {
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState(""); // 'success' or 'error'
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
 
   // Function to check if number was already submitted
   const isNumberAlreadySubmitted = (phoneNumber) => {
@@ -101,19 +102,14 @@ const HeroSection = () => {
           // Save the submitted number
           saveSubmittedNumber(phoneNumber);
 
-          // Clear form and show success message
+          // Redirect to thank you page
+          window.location.href = '/thankyou.html';
+
+          // Optional: Reset form in background
           e.target.reset();
           e.target.City.selectedIndex = 0;
           e.target.Qualification.selectedIndex = 0;
           e.target["Program of Interest"].selectedIndex = 0;
-
-          setMessage("✅ " + data.message);
-          setMessageType("success");
-
-          setTimeout(() => {
-            setMessage("");
-            setMessageType("");
-          }, 5000);
         } else {
           throw new Error(data.message || "Submission failed");
         }
@@ -261,7 +257,9 @@ const HeroSection = () => {
                 Artificial Intelligence
               </option>
               <option value="Business Analytics">Business Analytics</option>
-              <option value="Software Engineering">Software Engineering</option>
+              <option value="Software Engineering">
+                Software Engineering
+              </option>
             </select>
             <button
               type="submit"
