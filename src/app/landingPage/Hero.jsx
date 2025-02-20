@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
-const HeroSection = () => {
+const Hero = () => {
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState(""); // 'success' or 'error'
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
+  const [isEligible, setIsEligible] = useState(true);
 
   // Function to check if number was already submitted
   const isNumberAlreadySubmitted = (phoneNumber) => {
@@ -34,6 +35,24 @@ const HeroSection = () => {
 
   const validateEmail = (value) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  };
+
+  const handleQualificationChange = (e) => {
+    const isQualified = e.target.value === "Yes";
+    setIsEligible(isQualified);
+    if (!isQualified) {
+      setMessage("❌ You are not eligible for this program");
+      setMessageType("error");
+    } else {
+      setMessage("");
+    }
+  };
+
+  const getFormSource = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    // Get UTM source if it exists, otherwise default to 'website'
+    return urlParams.get('utm_source')?.toLowerCase() || 'website';
   };
 
   const handleSubmit = (e) => {
@@ -82,13 +101,13 @@ const HeroSection = () => {
     formData.append(
       "contact-message",
       `City: ${e.target.City.value}, 
-      Qualification: ${e.target.Qualification.value}, 
+      Graduate: ${e.target.Qualification.value}, 
       Program: ${e.target["Program of Interest"].value}`
     );
     formData.append("contact-city", e.target.City.value);
 
-    // Optional fields with default values
-    formData.append("source", "website");
+    // Update the source to be dynamic
+    formData.append("source", getFormSource());
     formData.append("orderid", "1046");
     formData.append("sitename", "NUSPlanetlp");
 
@@ -103,7 +122,7 @@ const HeroSection = () => {
           saveSubmittedNumber(phoneNumber);
 
           // Redirect to thank you page
-          window.location.href = '/thankyou.html';
+          window.location.href = "/thankyou.html";
 
           // Optional: Reset form in background
           e.target.reset();
@@ -180,7 +199,7 @@ const HeroSection = () => {
           {/* Message display above the form */}
           {message && (
             <div
-              className={`mb-4 p-3 rounded-md text-sm font-medium ${
+              className={`mb-4 p-3 rounded-md text-base font-medium ${
                 messageType === "success"
                   ? "bg-green-100 text-green-700 border border-green-400"
                   : messageType === "error"
@@ -237,13 +256,13 @@ const HeroSection = () => {
               name="Qualification"
               className="w-full bg-white p-2"
               required
+              onChange={handleQualificationChange}
             >
               <option value="" disabled selected>
-                Qualification
+                Graduate
               </option>
-              <option value="12th Pass">12th Pass</option>
-              <option value="Graduate">Graduate</option>
-              <option value="Post Graduate">Post Graduate</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
             </select>
             <select
               name="Program of Interest"
@@ -257,15 +276,13 @@ const HeroSection = () => {
                 Artificial Intelligence
               </option>
               <option value="Business Analytics">Business Analytics</option>
-              <option value="Software Engineering">
-                Software Engineering
-              </option>
+              <option value="Software Engineering">Software Engineering</option>
             </select>
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || !isEligible}
               className={`px-14 rounded-sm py-2 block mx-auto bg-[#1a237e] hover:bg-[#1a237e]/90 text-white text-[1.4rem] font-normal ${
-                isSubmitting
+                isSubmitting || !isEligible
                   ? "opacity-50 cursor-not-allowed"
                   : "animate-bounce"
               }`}
@@ -280,4 +297,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default Hero;

@@ -1,5 +1,4 @@
 import React from "react";
-import HeroSection from "./HeroSection";
 import Hero from "./Hero";
 import WhoShouldAttend from "./WhoShouldAttend";
 import MTechProgram from "./MTechProgram";
@@ -10,7 +9,6 @@ import WhyChooseNus from "./WhyChooseNus";
 const LandingPage = () => {
   return (
     <>
-      {/* <HeroSection /> */}
       <Hero />
       <WhoShouldAttend />
       <MTechProgram />
